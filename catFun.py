@@ -46,7 +46,7 @@ myimage = dw.loadImage("cat.bmp")
 #
 def updateDisplay(state):
     dw.fill(dw.black)
-    dw.draw(myimage, (state[0], height/2))
+    dw.draw(myimage, (state[(0,0)], height/2))
 
 
 ################################################################
@@ -58,7 +58,7 @@ def updateDisplay(state):
 #
 # state -> state
 def updateState(state):
-    return((state[0]+state[1],state[1]))
+    return((state[(0, 0)]+state[(1, 1)],state[(1, 1)]))
 
 ################################################################
 
