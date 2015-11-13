@@ -2,6 +2,9 @@ import runWorld as rw
 import drawWorld as dw
 import pygame as pg
 
+from random import randint
+print(randint (1,5))
+
 ################################################################
 
 # This program is an interactive simulation/game. A cat starts
