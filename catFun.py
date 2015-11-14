@@ -4,7 +4,6 @@ import pygame as pg
 
 from random import randint
 print(randint (1,5))
-
 ################################################################
 
 # This program is an interactive simulation/game. A cat starts
@@ -61,7 +60,7 @@ def updateDisplay(state):
 #
 # state -> state
 def updateState(state):
-    return((state[0]+state[1], randint(1,5), state[2]+state[3], randint(1, 5)))
+    return((state[0]+state[1],state[1],state[2]+state[3], state[3]))
 
 ################################################################
 
@@ -89,13 +88,11 @@ def endState(state):
 # state -> event -> state
 #
 def handleEvent(state, event):  
-#    print("Handling event: " + str(event))
+    print("Handling event: " + str(event))
     if (event.type == pg.MOUSEBUTTONDOWN):
-        if (state[1], state[3]) == (1, 1):
-            newState = (-1, -1)
-        else:
-            newState = (1, 1)   
-        return((state[0],newState))
+        newStateDX = randint(-10,10)
+        newStateDY = randint(-10,10)
+        return((state[0],newStateDX,state[2],newStateDY))
     else:
         return(state)
 
@@ -103,12 +100,11 @@ def handleEvent(state, event):
 
 # World state will be single x coordinate at left edge of world
 
-# The cat starts at the left, moving right
-
-initState = (randint(0, 499), 1, randint(0, 499), 1)
+# The cat starts at the left, moving right 
+initState = (randint(50,499),randint(-5,5),randint(50,499),randint(-5,5))
 
 # Run the simulation no faster than 60 frames per second
-frameRate = 30
+frameRate = 10
 
 # Run the simulation!
 rw.runWorld(initState, updateDisplay, updateState, handleEvent,
